@@ -1,66 +1,68 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { useState, useEffect, useCallback } from 'react';
+import type { User, PracticeSession, PracticeImage, UserRanking, Skill } from '@/lib/types';
+import { getUsers, getSessions, getImages, getRankings } from '@/lib/store';
+import Hero from '@/components/Hero';
+import GoalCards from '@/components/GoalCards';
+import PracticeTable from '@/components/PracticeTable';
+import Leaderboard from '@/components/Leaderboard';
+import PracticeGallery from '@/components/PracticeGallery';
+import ScoreTable from '@/components/ScoreTable';
 
 export default function Home() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [sessions, setSessions] = useState<PracticeSession[]>([]);
+  const [images, setImages] = useState<PracticeImage[]>([]);
+  const [rankings, setRankings] = useState<UserRanking[]>([]);
+  const [activeSkill, setActiveSkill] = useState<Skill>('listening');
+  const [loading, setLoading] = useState(true);
+
+  const loadData = useCallback(async () => {
+    try {
+      const [u, s, img, r] = await Promise.all([
+        getUsers(),
+        getSessions(activeSkill),
+        getImages(),
+        getRankings(),
+      ]);
+      setUsers(u);
+      setSessions(s);
+      setImages(img);
+      setRankings(r);
+    } catch (err) {
+      console.error('Failed to load data:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, [activeSkill]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  const handleRefresh = () => {
+    loadData();
+  };
+
+  const handleSkillChange = (skill: Skill) => {
+    setActiveSkill(skill);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="container">
+      <Hero users={users} />
+      <GoalCards users={users} onRefresh={handleRefresh} />
+      <ScoreTable />
+      <PracticeTable
+        sessions={sessions}
+        users={users}
+        activeSkill={activeSkill}
+        onSkillChange={handleSkillChange}
+        onRefresh={handleRefresh}
+      />
+      <Leaderboard rankings={rankings} />
+      <PracticeGallery images={images} users={users} onRefresh={handleRefresh} />
+    </main>
   );
 }

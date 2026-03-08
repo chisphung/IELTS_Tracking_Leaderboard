@@ -1,0 +1,126 @@
+.leaderboardCard {
+  padding: var(--space-lg);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.row:hover {
+  background: var(--bg-glass);
+}
+
+.rankBadge {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.gold { background: var(--gradient-gold); color: #1a1a1a; }
+.silver { background: var(--gradient-silver); color: #1a1a1a; }
+.bronze { background: var(--gradient-bronze); color: #1a1a1a; }
+.regular {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+}
+
+.userInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.leaderName {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.sessionCount {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.skillScores {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.skillScore {
+  text-align: center;
+  min-width: 50px;
+}
+
+.skillLabel {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.skillValue {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.overallScore {
+  text-align: center;
+  min-width: 60px;
+}
+
+.overallLabel {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.overallValue {
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+@media (max-width: 768px) {
+  .skillScores {
+    display: none;
+  }
+  .row {
+    padding: var(--space-sm) var(--space-md);
+  }
+}

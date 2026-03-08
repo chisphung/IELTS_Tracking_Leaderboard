@@ -1,0 +1,151 @@
+.galleryCard {
+  padding: var(--space-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+.imageCard {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.imageCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageInfo {
+  padding: var(--space-md);
+}
+
+.imageCaption {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.imageMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imageUser {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.imageDate {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.deleteImgBtn {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.imageCard:hover .deleteImgBtn {
+  opacity: 1;
+}
+
+.deleteImgBtn:hover {
+  background: var(--accent-red);
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--text-muted);
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.uploadArea {
+  margin-bottom: var(--space-lg);
+}
+
+.dropzone {
+  border: 2px dashed var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.dropzone:hover {
+  border-color: var(--accent-purple);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.dropzoneIcon {
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
+}
+
+.dropzoneText {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.preview {
+  margin-top: var(--space-md);
+  border-radius: var(--radius-md);
+  max-height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}

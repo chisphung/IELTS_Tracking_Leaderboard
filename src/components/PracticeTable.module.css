@@ -1,0 +1,71 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.tableCard {
+  padding: var(--space-lg);
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  color: var(--text-muted);
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.emptyText {
+  font-size: 0.95rem;
+}
+
+.scoreCell {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.scoreHigh {
+  color: var(--accent-green);
+}
+
+.scoreMid {
+  color: var(--accent-amber);
+}
+
+.scoreLow {
+  color: var(--accent-red);
+}
+
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.deleteRowBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.deleteRowBtn:hover {
+  color: var(--accent-red);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+tr:hover .deleteRowBtn {
+  opacity: 1;
+}
