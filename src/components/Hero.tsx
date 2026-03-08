@@ -55,8 +55,8 @@ export default function Hero({ users }: HeroProps) {
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
-        <h1 className={styles.title}>IELTS Battle Arena</h1>
-        <p className={styles.subtitle}>Track, Compete, Conquer 🏆</p>
+        <h1 className={styles.title}>Con cho IELTS rat phein</h1>
+        <p className={styles.subtitle}>Co len anh em oi</p>
 
         {usersWithExam.length > 0 ? (
           <>
